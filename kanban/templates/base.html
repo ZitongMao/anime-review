@@ -1,0 +1,43 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="ZT's Anime Watch List">
+    <meta name="author" content="Zitong Mao">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+
+    <title>{% block head_title %}Anime List & Review{% endblock %}</title>
+
+    {% include 'head_css.html' %}
+    <style>
+    {% block style %}
+
+    {% endblock %}
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    {% include 'navbar.html' %}
+    {% block dashboard %}
+    {% endblock %}
+
+    {% block jumbotron %}
+    {% endblock %}
+
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+      {% block title_index %}
+      {% endblock %}
+    </div> <!-- /container -->
+    {% include 'javascript.html' %}
+  </body>
+</html>

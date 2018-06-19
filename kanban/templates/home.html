@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% include 'head_css.html' %}
+<style>
+{% block style %}
+.navbar-static-top {
+  margin-bottom: 0PX !important;
+}
+
+.text-align-center {
+  text-align: center;
+}
+.jumbotron {
+  background-color: #184365;
+  color: #fff;
+}
+.nav-side {
+  padding:50px 0px 5px 10px;
+}
+.cus-image{
+  width:12px;
+  height:15px;
+  display:inline;
+}
+{% endblock %}
+</style>
+
+{% block head_title %}Welcome | {{ block.super}}{% endblock %}
+
+<!-- Main component for a primary marketing message or call to action -->
+{% block jumbotron %}
+<div class="jumbotron">
+<div class="container">
+  <div class="row">
+    <div class='col-sm-6'>
+
+      <h1>My Anime List</h1>
+      <p>Welcome to my Anime Watch List. I use this to keep track of the animes I want to watch and the ones I've watched.</p>
+      <p>You can find my list below but feel free to create your own anime list.<p>
+        <a class="btn btn-lg btn-primary" href="/accounts/register/" role="button">Sign Up &raquo;</a>
+      </p>
+    </div>
+    <div class='col-sm-6'>
+      <img src="{% static 'img/imag1.jpg' %}" class='img-response' />
+    </div>
+
+  </div>
+</div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container" style='font-size:20px;'>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Zitong's Anime List</h2>
+      <p>(You can't edit this one because it's mine. Sign up to create your own!)</p>
+      <br />
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>English Title</th>
+              <th>
+                Japanese Title
+              </th>
+              <th>
+                Year
+              </th>
+              <th>
+                <form method='POST' action='{% url 'home' %}'>
+                  Status&nbsp;
+                  {% csrf_token %}
+                  <input name="status" type='hidden' value='status' />
+                  <input type='image' src="{% static 'img/sort.png' %}" class='cus-image' />
+                </form>
+              </th>
+              <th>
+                <form method='POST' action='{% url 'home' %}'>
+                  Rating&nbsp;
+                  {% csrf_token %}
+                  <input name="rating" type='hidden' value='rating' />
+                  <input type='image' src="{% static 'img/sort.png' %}" class='cus-image' />
+                </form>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for title in titles %}
+            <tr>
+              <td>{{ title.title }}</a></td>
+              <td>{{ title.japanese_title }}</a></td>
+              <td>{{ title.year }}</td>
+              <td>{{ title.status }}</td>
+              <td>{{ title.rating }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

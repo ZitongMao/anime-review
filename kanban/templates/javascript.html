@@ -1,0 +1,33 @@
+{% load staticfiles %}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script>window.jQuery || document.write("<script src='{% static 'js/bootstrap.min.js' %}'><\/script>")</script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+    <!-- <scrpit src="{% static 'js/react.min.js' %}"></script>
+    <scrpit src="{% static 'js/react-dom.min.js' %}"></script>
+    <scrpit type='text/jsx' src="{% static 'js/indexReact.jsx' %}"></script> -->
+    <scrpit src="{% static 'js/browser.min.js' %}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109591249-4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-109591249-4');
+    </script>
+
+    <!-- <script>
+    $(document).ready(function(){
+      $(".navbar-static-top").affix({
+        offset: {
+          top: 125
+        }
+      });
+    });
+    </script> -->

@@ -1,0 +1,95 @@
+
+    {% extends 'base.html' %}
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Bootstrap core CSS -->
+    <script src="{% static 'js/font-awesome.min.js' %}"></script>
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    {% block dashboard %}
+    <style>
+    {% block style %}
+    .nav-side {
+      padding:50px 0px 5px 10px;
+    }
+    .cus-image{
+      width:12px;
+      height:15px;
+      display:inline;
+    }
+    {% endblock %}
+    </style>
+    <div class="container" style='font-size:20px;'>
+      <div class="row">
+        <!-- <div class="nav-side col-sm-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+        </div> -->
+        <div class="col-sm-12">
+          <h2>Your Anime List</h2>
+          <br />
+          <a href='/kanban/add' class='btn btn-primary'>+ Add Title</a>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>English Title</th>
+                  <th>
+                    Japanese Title
+                  </th>
+                  <th>
+                    Year
+                  </th>
+                  <th>
+                    <form method='POST' action='{% url 'kanban' %}'>
+                      Status&nbsp;
+                      {% csrf_token %}
+                      <input name="status" type='hidden' value='status' />
+                      <input type='image' src="{% static 'img/sort.png' %}" class='cus-image' />
+                    </form>
+                  </th>
+                  <th>
+                    <form method='POST' action='{% url 'kanban' %}'>
+                      Rating&nbsp;
+                      {% csrf_token %}
+                      <input name="rating" type='hidden' value='rating' />
+                      <input type='image' src="{% static 'img/sort.png' %}" class='cus-image' />
+                    </form>
+                  </th>
+                  <!-- <th>
+                    <form method='POST' action='{% url 'kanban' %}'>
+                      Deadline&nbsp;
+                      {% csrf_token %}
+                      <input type='image' src="{% static 'img/sort.png' %}" class='cus-image' />
+                    </form>
+                  </th> -->
+                  <th>Edit/Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for title in titles %}
+                <tr>
+                  <td><a href='/kanban/details/{{ title.id }}'>{{ title.title }}</a></td>
+                  <td><a href='/kanban/details/{{ title.id }}'>{{ title.japanese_title }}</a></td>
+                  <td>{{ title.year }}</td>
+                  <td>{{ title.status }}</td>
+                  <td>{{ title.rating }}</td>
+                  <td>
+                    <!-- <a href='/kanban/status/{{ title.id }}'><img src="{% static 'img/done.png' %}" class='cus-image' />&nbsp;</a> -->
+                    <a href='/kanban/edit/{{ title.id }}'><img src="{% static 'img/edit.png' %}" class='cus-image' />&nbsp;</a>
+                    <a href='/kanban/deletion/{{ title.id }}'><img src="{% static 'img/delet.png' %}" class='cus-image' /></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}

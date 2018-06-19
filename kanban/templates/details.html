@@ -1,0 +1,19 @@
+{% include 'base.html' %}
+<div class="container">
+<a href='/kanban' class='btn btn-primary'><< Go Back</a>
+<a href='/kanban/edit/{{ title.id }}' class='btn btn-primary'>Edit</a>
+<div class='col-sm-8 col-sm-offset-2'>
+  <br /><br /><br /><br />
+<div class='row' style='padding:10px ;background-color:#bdd2e3'>
+<h1>{{ title.title }}</h1>
+<h2>{{ title.japanese_title }}</h2>
+Created on {{ title.created_at }}
+</div>
+<br />
+<br />
+<br />
+<div class='col-sm-14'>
+<p class='lead'>{{ title.review }}</p>
+</div>
+</div>
+</div>
